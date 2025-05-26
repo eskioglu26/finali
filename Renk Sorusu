@@ -1,0 +1,141 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Mon May 26 19:13:18 2025
+
+@author: msi-nb
+"""
+
+from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtGui import QColor
+
+class Ui_MainWindow(object):
+    def setupUi(self, MainWindow):
+        MainWindow.setObjectName("MainWindow")
+        MainWindow.resize(397, 311)
+        self.centralwidget = QtWidgets.QWidget(MainWindow)
+        self.centralwidget.setObjectName("centralwidget")
+        self.widget = QtWidgets.QWidget(self.centralwidget)
+        self.widget.setGeometry(QtCore.QRect(12, 12, 202, 176))
+        self.widget.setObjectName("widget")
+        self.verticalLayout = QtWidgets.QVBoxLayout(self.widget)
+        self.verticalLayout.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout.setObjectName("verticalLayout")
+        self.frame = QtWidgets.QFrame(self.widget)
+        self.frame.setMinimumSize(QtCore.QSize(161, 81))
+        self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.frame.setObjectName("frame")
+        self.verticalLayout.addWidget(self.frame)
+        self.horizontalLayout = QtWidgets.QHBoxLayout()
+        self.horizontalLayout.setObjectName("horizontalLayout")
+        self.label = QtWidgets.QLabel(self.widget)
+        self.label.setMinimumSize(QtCore.QSize(31, 16))
+        self.label.setMaximumSize(QtCore.QSize(31, 16))
+        self.label.setObjectName("label")
+        self.horizontalLayout.addWidget(self.label)
+        self.horizontalSlider = QtWidgets.QSlider(self.widget)
+        self.horizontalSlider.setMinimumSize(QtCore.QSize(160, 22))
+        self.horizontalSlider.setMaximumSize(QtCore.QSize(160, 22))
+        self.horizontalSlider.setOrientation(QtCore.Qt.Horizontal)
+        self.horizontalSlider.setObjectName("horizontalSlider")
+        self.horizontalLayout.addWidget(self.horizontalSlider)
+        self.verticalLayout.addLayout(self.horizontalLayout)
+        self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_2.setObjectName("horizontalLayout_2")
+        self.label_2 = QtWidgets.QLabel(self.widget)
+        self.label_2.setMinimumSize(QtCore.QSize(21, 16))
+        self.label_2.setMaximumSize(QtCore.QSize(21, 16))
+        self.label_2.setObjectName("label_2")
+        self.horizontalLayout_2.addWidget(self.label_2)
+        self.horizontalSlider_2 = QtWidgets.QSlider(self.widget)
+        self.horizontalSlider_2.setMinimumSize(QtCore.QSize(160, 22))
+        self.horizontalSlider_2.setMaximumSize(QtCore.QSize(160, 22))
+        self.horizontalSlider_2.setOrientation(QtCore.Qt.Horizontal)
+        self.horizontalSlider_2.setObjectName("horizontalSlider_2")
+        self.horizontalLayout_2.addWidget(self.horizontalSlider_2)
+        self.verticalLayout.addLayout(self.horizontalLayout_2)
+        self.horizontalLayout_3 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_3.setObjectName("horizontalLayout_3")
+        self.label_3 = QtWidgets.QLabel(self.widget)
+        self.label_3.setMinimumSize(QtCore.QSize(21, 16))
+        self.label_3.setMaximumSize(QtCore.QSize(21, 16))
+        self.label_3.setObjectName("label_3")
+        self.horizontalLayout_3.addWidget(self.label_3)
+        self.horizontalSlider_3 = QtWidgets.QSlider(self.widget)
+        self.horizontalSlider_3.setMinimumSize(QtCore.QSize(160, 22))
+        self.horizontalSlider_3.setMaximumSize(QtCore.QSize(160, 22))
+        self.horizontalSlider_3.setOrientation(QtCore.Qt.Horizontal)
+        self.horizontalSlider_3.setObjectName("horizontalSlider_3")
+        self.horizontalLayout_3.addWidget(self.horizontalSlider_3)
+        self.verticalLayout.addLayout(self.horizontalLayout_3)
+        MainWindow.setCentralWidget(self.centralwidget)
+        self.menubar = QtWidgets.QMenuBar(MainWindow)
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 397, 26))
+        self.menubar.setObjectName("menubar")
+        MainWindow.setMenuBar(self.menubar)
+        self.statusbar = QtWidgets.QStatusBar(MainWindow)
+        self.statusbar.setObjectName("statusbar")
+        MainWindow.setStatusBar(self.statusbar)
+
+        self.retranslateUi(MainWindow)
+        QtCore.QMetaObject.connectSlotsByName(MainWindow)
+
+    def retranslateUi(self, MainWindow):
+        _translate = QtCore.QCoreApplication.translate
+        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
+        self.label.setText(_translate("MainWindow", "R:"))
+        self.label_2.setText(_translate("MainWindow", "G:"))
+        self.label_3.setText(_translate("MainWindow", "B:"))
+        
+        
+        
+        
+        
+        def valuechange(self):
+            
+            valR = self.horizontalSlider.value()
+            valG = self.horizontalSlider_2.value()
+            valB = self.horizontalSlider_3.value()
+            
+    		
+            self.col.setRed(valR)                
+            self.col.setGreen(valG)             
+            self.col.setBlue(valB) 
+                
+            self.frame.setStyleSheet("QFrame { background-color: %s }" %
+                self.col.name()) 
+            
+            
+            
+            
+            
+            # === Ana Pencere ===
+            class MyApp(QtWidgets.QMainWindow):
+                def __init__(self):
+                    super().__init__()
+                    self.ui = Ui_MainWindow()
+                    self.ui.setupUi(self)
+
+                    self.col = QColor(0, 0, 0)
+
+                    self.ui.horizontalSlider.valueChanged.connect(self.valuechange)
+                    self.ui.horizontalSlider_2.valueChanged.connect(self.valuechange)
+                    self.ui.horizontalSlider_3.valueChanged.connect(self.valuechange)
+
+                def valuechange(self):
+                    r = self.ui.horizontalSlider.value()
+                    g = self.ui.horizontalSlider_2.value()
+                    b = self.ui.horizontalSlider_3.value()
+
+                    self.col.setRgb(r, g, b)
+                    self.ui.frame.setStyleSheet(f"QFrame {{ background-color: {self.col.name()}; }}")
+
+
+            # === Uygulama Başlatma ===
+            if __name__ == "__main__":
+                import sys
+                app = QtWidgets.QApplication(sys.argv)
+                window = MyApp()
+                window.show()
+                sys.exit(app.exec_())
+
